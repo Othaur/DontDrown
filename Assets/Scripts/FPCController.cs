@@ -21,8 +21,8 @@ public class FPCController : MonoBehaviour
     public Vector3 waterFlow = new Vector3(2.0f, 0, 0); // Reduced constant water flow direction
 
     // Camera settings
-    public float verticalLookSpeed = 50f; // Increased speed of vertical camera look
-    public float horizontalLookSpeed = 50f; // Increased speed of horizontal camera look
+    public float verticalLookSpeed = 5f; // Increased speed of vertical camera look
+    public float horizontalLookSpeed = 6f; // Increased speed of horizontal camera look
     public float maxVerticalAngle = 67.5f; // Maximum camera pitch angle
 
     private CharacterController characterController;
