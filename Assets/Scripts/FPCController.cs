@@ -14,9 +14,8 @@ public class FluidDynamicsController : MonoBehaviour
     // Buoyancy and gravity
     public float buoyancy = 2.0f; // Upward force counteracting gravity while swimming
     public float gravity = -9.8f; // Downward pull (adjusted for water)
-    public float upwardSpeed = 50.0f; // Speed for manual upward movement (5x increase)
+    public float upwardSpeed = 29.4f; // Adjusted to match downward speed when sinking
     public float strokeCycleTime = 1.0f; // Time for a full stroke cycle
-    public float strokeAmplitude = 0.01f; // Further reduced vertical movement amplitude during a stroke
 
     // Water flow settings
     public Vector3 constantFlow = new Vector3(1.0f, 0, 0); // Constant water flow direction and speed
@@ -25,6 +24,8 @@ public class FluidDynamicsController : MonoBehaviour
     private CharacterController characterController;
     private Vector3 velocity = Vector3.zero; // Current velocity of the swimmer
     private float strokeTimer = 0.0f; // Timer to track stroke cycles
+    private float bottomOscillation;
+    private float topOscillation;
 
     void Start()
     {
@@ -33,6 +34,9 @@ public class FluidDynamicsController : MonoBehaviour
         // Lock the cursor for better camera control
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        // Set initial oscillation bounds
+        SetNewOscillationBounds();
     }
 
     void Update()
@@ -50,14 +54,15 @@ public class FluidDynamicsController : MonoBehaviour
             if (strokeTimer > strokeCycleTime)
             {
                 strokeTimer -= strokeCycleTime;
+                SetNewOscillationBounds(); // Update bounds for the next cycle
             }
 
-            // Add oscillating vertical stroke motion with greatly reduced amplitude
+            // Add oscillating vertical stroke motion within the bounds
             float strokePhase = (strokeTimer / strokeCycleTime) * 2 * Mathf.PI; // Convert to radians
-            float strokeOffset = Mathf.Sin(strokePhase) * strokeAmplitude; // Oscillates up and down
+            float strokeOffset = Mathf.Sin(strokePhase); // Oscillates between -1 and 1
+            float oscillation = Mathf.Lerp(bottomOscillation, topOscillation, (strokeOffset + 1) / 2); // Map to bounds
 
-            // Ensure oscillation returns to 0 and balances vertical movement
-            velocity.y = Mathf.Lerp(velocity.y, buoyancy + strokeOffset, Time.deltaTime * 2);
+            velocity.y = Mathf.Lerp(velocity.y, oscillation, Time.deltaTime * 2);
         }
 
         // Simulate frog-like breaststroke dynamics for directional movement
@@ -121,5 +126,11 @@ public class FluidDynamicsController : MonoBehaviour
         // Combine input into a direction vector
         Vector3 direction = new Vector3(moveHorizontal, 0, moveVertical).normalized;
         return direction;
+    }
+
+    private void SetNewOscillationBounds()
+    {
+        bottomOscillation = Random.Range(-2.25f, -1.5f);
+        topOscillation = Random.Range(1.6f, 2.3f);
     }
 }

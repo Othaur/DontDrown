@@ -360,7 +360,7 @@ GameObject:
   - component: {fileID: 1223259699}
   - component: {fileID: 1223259704}
   - component: {fileID: 1223259703}
-  - component: {fileID: 1223259702}
+  - component: {fileID: 1223259705}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -461,28 +461,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1223259697}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &1223259702
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1223259697}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ad0f8b7ed2b3eb4a88eb7b3fa0f464e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  forwardSpeed: 70
-  lateralSpeed: 40
-  sinkingSpeed: 3
-  dragCoefficient: 0.85
-  buoyancy: 2
-  gravity: -9.8
-  upwardSpeed: 50
-  strokeCycleTime: 1
-  strokeAmplitude: 0.025
-  constantFlow: {x: 1, y: 0, z: 0}
 --- !u!143 &1223259703
 CharacterController:
   m_ObjectHideFlags: 0
@@ -517,6 +495,28 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1223259697}
   m_CullTransparentMesh: 1
+--- !u!114 &1223259705
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1223259697}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ad0f8b7ed2b3eb4a88eb7b3fa0f464e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  forwardSpeed: 70
+  lateralSpeed: 40
+  sinkingSpeed: 3
+  dragCoefficient: 0.85
+  buoyancy: 2
+  gravity: -9.8
+  upwardSpeed: 50
+  strokeCycleTime: 1
+  strokeAmplitude: 0.01
+  constantFlow: {x: 1, y: 0, z: 0}
 --- !u!1 &1741693159
 GameObject:
   m_ObjectHideFlags: 0
