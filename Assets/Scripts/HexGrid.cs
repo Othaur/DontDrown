@@ -1,0 +1,159 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+//using CodeMonkey.Utils;
+
+public class HexGrid : MonoBehaviour
+{
+    private GridSystem<MapGridObject> grid;
+    private MapGridObject lastGridObject;     
+    [SerializeField] GameObject wallTransform;
+    [SerializeField] GameObject emptyTransform;
+    [SerializeField] GameObject startTransform;
+    [SerializeField] int width;
+    [SerializeField] int height;
+
+    public Vector2Int currentTile;
+    List<MazeNode> nodes;
+
+
+    public int Width { get; set; }
+    public int Height { get; set; }
+    public float cellSize = 5f;
+
+    private void Awake()
+    {
+        Width = width; //26
+        Height = height; //18
+        //float cellSize = 5f; //5
+
+        grid = new GridSystem<MapGridObject>(Width, Height, cellSize, new Vector3((Width * cellSize)/-2f, ((Height*cellSize)*.75f/-2f)+1 ), (GridSystem<MapGridObject> g, int x, int y) => new MapGridObject(g, x, y));
+
+    }
+    private void Start()
+    {
+        GenerateMaze();
+    }
+
+    void GenerateMaze()
+    {
+        GenHexMaze maze = new GenHexMaze();
+        int startX = 13;
+        int startY = 17;
+
+        nodes = maze.GenerateMaze(this, new Vector2Int(startX, startY));
+
+        int index = 0;
+        for (int j = 0; j < Height; j++)
+            for (int i = 0; i < Width; i++)
+            {
+                index = i + (j * Width);
+                MapGridObject tempObject = grid.GetGridObject(i, j);
+                MazeNode tempNode = nodes[index];
+
+                switch (tempNode.State)
+                {
+                    case GroundState.Wall:
+                        {
+                            GameObject tempTransform = Instantiate(wallTransform, grid.GetWorldPosition(i, j)+ new Vector3(0,0,0), Quaternion.identity);
+                            grid.GetGridObject(i, j).visualTransform = tempTransform;                            
+                            break;
+                        }
+                    case GroundState.Start:
+                        {
+                            GameObject tempTransform = Instantiate(startTransform, grid.GetWorldPosition(i, j) + new Vector3(0, 0,0), Quaternion.identity);
+                            grid.GetGridObject(i, j).visualTransform = tempTransform;
+                            break;
+                        }
+                    case GroundState.Empty:
+                        {
+                            GameObject tempTransform = Instantiate(emptyTransform, grid.GetWorldPosition(i, j) + new Vector3(0, 0, 0), Quaternion.identity);
+                            grid.GetGridObject(i, j).SetTransform( tempTransform);
+                            break;
+                        }
+                }
+            }
+
+        // Make neighbours visible
+        List<Vector3Int> neighbours = grid.GetNeighbours(startX, startY);
+
+        foreach (var n in neighbours)
+        {
+            MapGridObject temp = grid.GetGridObject(n.x, n.y);
+        }
+    }
+
+    private void Update()
+    {
+       
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            
+         
+        }
+        
+        
+    }
+
+    public List<Vector3Int> GetCellNeighbours(int x, int y)
+    {
+        return grid.GetNeighbours(x, y);
+    }
+
+    public MapGridObject GetObject(int x, int y)
+    {
+        return grid.GetGridObject(x, y);
+    }
+
+    public void SetObject(int x, int y, MapGridObject item)
+    {
+        grid.SetGridObject(x, y, item);
+    }
+
+    public Vector3 GetCellCenter(Vector3 position)
+    {
+        int x, y;
+        grid.GetXY(position, out x, out y);
+        return grid.GetWorldPosition(x, y);
+    }
+
+}
+
+
+
+public class MapGridObject
+{
+    GridSystem<MapGridObject> grid;
+    int x, y;
+    public GameObject visualTransform;
+    
+    public MapGridObject(GridSystem<MapGridObject> grid, int x, int y)
+    {
+        this.grid = grid;
+        this.x = x;
+        this.y = y;
+    }
+
+    public void SetTransform(GameObject transform)
+    {
+        this.visualTransform = transform;
+        grid.TriggerGridObjectChanged(x, y);
+    }
+
+    public void ClearTransform()
+    {
+        visualTransform = null;
+    }
+
+    public bool CanBuild()
+    {
+        return visualTransform == null;
+    }
+
+}
+
