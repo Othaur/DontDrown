@@ -75,13 +75,14 @@ public class FluidDynamicsController : MonoBehaviour
         // Adjust oscillation for rising diagonally
         if (isRisingWithOscillation)
         {
-            oscillation += sinkingSpeed * oscillationPhase; // Diagonal rise adjustment
+            float predictedRiseOffset = velocity.y * strokeCycleTime * (1 - oscillationPhase); // Predict rise continuation
+            oscillation += predictedRiseOffset; // Diagonal rise adjustment with prediction
         }
 
-        // Use the current Y position as the oscillation base only if the flag is set
+        // Smoothly update the oscillation base
         if (updateOscillationBase)
         {
-            currentOscillationBase = transform.position.y;
+            currentOscillationBase = Mathf.Lerp(currentOscillationBase, transform.position.y, Time.deltaTime * 3); // Smooth transition
             updateOscillationBase = false;
         }
 
