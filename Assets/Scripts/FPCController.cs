@@ -6,7 +6,7 @@ using UnityEngine;
 public class FluidDynamicsController : MonoBehaviour
 {
     // Physics constants
-    public float forwardSpeed = 15.5f; // Reduced horizontal movement speed (50% shorter)
+    public float forwardSpeed = 15.5f; // Reduced horizontal movement speed (50% shorter) 
     public float lateralSpeed = 7.0f; // Reduced side-to-side movement speed (50% shorter)
     public float sinkingSpeed = 7.0f; // Default sinking speed (reduced to match upward movement)
     public float dragCoefficient = 0.99f; // Increased drag for faster stopping
@@ -29,6 +29,8 @@ public class FluidDynamicsController : MonoBehaviour
     private float strokeTimer = 0.0f; // Timer to track oscillation phase
     private float currentOscillationBase = 0.0f; // Current Y base for oscillation
     private float currentCameraPitch = 0.0f; // Tracks camera pitch for vertical look
+    private bool updateOscillationBase = true; // Flag to control oscillation base updates
+    private bool isRisingWithOscillation = false; // Flag for diagonal rising oscillation
 
     void Start()
     {
@@ -70,7 +72,19 @@ public class FluidDynamicsController : MonoBehaviour
         // Calculate the oscillation offset using a sine wave
         float oscillation = Mathf.Sin(oscillationPhase * Mathf.PI * 2) * oscillationAmplitude;
 
-        // Use the current Y position as the oscillation base
+        // Adjust oscillation for rising diagonally
+        if (isRisingWithOscillation)
+        {
+            oscillation += sinkingSpeed * oscillationPhase; // Diagonal rise adjustment
+        }
+
+        // Use the current Y position as the oscillation base only if the flag is set
+        if (updateOscillationBase)
+        {
+            currentOscillationBase = transform.position.y;
+            updateOscillationBase = false;
+        }
+
         float newYPosition = currentOscillationBase + oscillation;
         velocity.y = (newYPosition - transform.position.y) / Time.deltaTime;
 
@@ -104,8 +118,13 @@ public class FluidDynamicsController : MonoBehaviour
         {
             // Rise upward at the same speed as sinking
             velocity.y = sinkingSpeed;
-            currentOscillationBase = transform.position.y; // Update oscillation base to current position
+            isRisingWithOscillation = true; // Enable diagonal rising oscillation
+            updateOscillationBase = true; // Allow oscillation base to update after rising
             Debug.Log("Spacebar pressed. Rising upward.");
+        }
+        else
+        {
+            isRisingWithOscillation = false; // Disable diagonal rising oscillation when spacebar is released
         }
     }
 
@@ -115,7 +134,7 @@ public class FluidDynamicsController : MonoBehaviour
         if (!Input.GetKey(KeyCode.Space) && Mathf.Abs(Input.GetAxis("Horizontal")) < 0.1f && Mathf.Abs(Input.GetAxis("Vertical")) < 0.1f)
         {
             velocity.y = -sinkingSpeed;
-            currentOscillationBase = transform.position.y; // Update oscillation base to current position
+            updateOscillationBase = true; // Allow oscillation base to update after sinking
             Debug.Log("Player sinking due to no input.");
         }
         else
