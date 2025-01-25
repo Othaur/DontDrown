@@ -494,16 +494,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ad0f8b7ed2b3eb4a88eb7b3fa0f464e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  burstSpeed: 7
-  baseSwimSpeed: 3
-  drag: 1
-  sinkSpeed: 15
-  burstDuration: 0.5
-  swimDuration: 1.5
-  sinkDuration: 0.25
-  playerCamera: {fileID: 1741693161}
-  lookSpeed: 2
-  lookXLimit: 45
+  forwardSpeed: 70
+  lateralSpeed: 40
+  sinkingSpeed: 3
+  dragCoefficient: 0.85
+  buoyancy: 2
+  gravity: -9.8
+  upwardSpeed: 50
+  strokeCycleTime: 1
+  strokeAmplitude: 0.5
+  constantFlow: {x: 1, y: 0, z: 0}
 --- !u!1 &1741693159
 GameObject:
   m_ObjectHideFlags: 0
