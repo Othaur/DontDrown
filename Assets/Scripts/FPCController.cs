@@ -16,7 +16,7 @@ public class FluidDynamicsController : MonoBehaviour
     public float gravity = -9.8f; // Downward pull (adjusted for water)
     public float upwardSpeed = 50.0f; // Speed for manual upward movement (5x increase)
     public float strokeCycleTime = 1.0f; // Time for a full stroke cycle
-    public float strokeAmplitude = 0.125f; // Reduced vertical movement amplitude during a stroke
+    public float strokeAmplitude = 0.025f; // Reduced vertical movement amplitude during a stroke
 
     // Water flow settings
     public Vector3 constantFlow = new Vector3(1.0f, 0, 0); // Constant water flow direction and speed
@@ -52,12 +52,12 @@ public class FluidDynamicsController : MonoBehaviour
                 strokeTimer -= strokeCycleTime;
             }
 
-            // Add oscillating vertical stroke motion with reduced amplitude
+            // Add oscillating vertical stroke motion with greatly reduced amplitude
             float strokePhase = (strokeTimer / strokeCycleTime) * 2 * Mathf.PI; // Convert to radians
             float strokeOffset = Mathf.Sin(strokePhase) * strokeAmplitude; // Oscillates up and down
 
             // Keep horizontal oscillation even and align motion with a straight swimming line
-            velocity.y = buoyancy + strokeOffset;
+            velocity.y = buoyancy + strokeOffset * buoyancy; // Very slight vertical adjustment
         }
 
         // Simulate frog-like breaststroke dynamics for directional movement
