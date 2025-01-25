@@ -6,8 +6,7 @@ using UnityEngine;
 public class HexGrid : MonoBehaviour
 {
     private GridSystem<MapGridObject> grid;
-    private MapGridObject lastGridObject; 
-    [SerializeField] GameObject testTransform;
+    private MapGridObject lastGridObject;     
     [SerializeField] GameObject wallTransform;
     [SerializeField] GameObject emptyTransform;
     [SerializeField] GameObject startTransform;
@@ -52,19 +51,19 @@ public class HexGrid : MonoBehaviour
                 {
                     case GroundState.Wall:
                         {
-                            GameObject tempTransform = Instantiate(wallTransform, grid.GetWorldPosition(i, j)+ new Vector3(0,0,-2), Quaternion.identity);
+                            GameObject tempTransform = Instantiate(wallTransform, grid.GetWorldPosition(i, j)+ new Vector3(0,0,0), Quaternion.identity);
                             grid.GetGridObject(i, j).visualTransform = tempTransform;                            
                             break;
                         }
                     case GroundState.Start:
                         {
-                            GameObject tempTransform = Instantiate(startTransform, grid.GetWorldPosition(i, j) + new Vector3(0, 0, 20), Quaternion.identity);
+                            GameObject tempTransform = Instantiate(startTransform, grid.GetWorldPosition(i, j) + new Vector3(0, 0,0), Quaternion.identity);
                             grid.GetGridObject(i, j).visualTransform = tempTransform;
                             break;
                         }
                     case GroundState.Empty:
                         {
-                            GameObject tempTransform = Instantiate(emptyTransform, grid.GetWorldPosition(i, j) + new Vector3(0, 0, 10), Quaternion.identity);
+                            GameObject tempTransform = Instantiate(emptyTransform, grid.GetWorldPosition(i, j) + new Vector3(0, 0, 0), Quaternion.identity);
                             grid.GetGridObject(i, j).SetTransform( tempTransform);
                             break;
                         }
