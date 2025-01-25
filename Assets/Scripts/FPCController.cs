@@ -6,9 +6,9 @@ using UnityEngine;
 public class FluidDynamicsController : MonoBehaviour
 {
     // Physics constants
-    public float forwardSpeed = 35.0f; // Reduced horizontal movement speed (50% shorter)
-    public float lateralSpeed = 20.0f; // Reduced side-to-side movement speed (50% shorter)
-    public float sinkingSpeed = 20.0f; // Default sinking speed
+    public float forwardSpeed = 17.5f; // Reduced horizontal movement speed (50% shorter)
+    public float lateralSpeed = 10.0f; // Reduced side-to-side movement speed (50% shorter)
+    public float sinkingSpeed = 10.0f; // Default sinking speed (reduced to match upward movement)
     public float dragCoefficient = 0.98f; // Increased drag for faster stopping
     public float buoyancyForce = 30.0f; // Upward force counteracting sinking
     public float gravity = -9.8f; // Simulated gravity in water
@@ -18,7 +18,7 @@ public class FluidDynamicsController : MonoBehaviour
     public float oscillationAmplitude = 2.0f; // Amplitude of the oscillation
 
     // Water flow settings
-    public Vector3 waterFlow = new Vector3(5.0f, 0, 0); // Constant water flow direction
+    public Vector3 waterFlow = new Vector3(2.5f, 0, 0); // Reduced constant water flow direction
 
     // Camera settings
     public float verticalLookSpeed = 2.0f; // Speed of vertical camera look
@@ -46,10 +46,8 @@ public class FluidDynamicsController : MonoBehaviour
     {
         ApplyOscillation();         // Constant up-and-down movement
         ApplyHorizontalMovement();  // WASD controls for X/Z movement
-        ApplySpacebarControls();    // Spacebar to tread water
-
-        ApplySinking();             // Apply sinking behavior
-        ApplyBuoyancy();            // Apply buoyancy force
+        ApplySpacebarControls();    // Spacebar to rise
+        ApplySinking();             // Apply sinking behavior when idle
 
         // Apply final movement and forces
         characterController.Move(velocity * Time.deltaTime);
@@ -104,12 +102,9 @@ public class FluidDynamicsController : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Space))
         {
-            // Stop horizontal movement
-            velocity.x = Mathf.Lerp(velocity.x, 0, Time.deltaTime * 5);
-            velocity.z = Mathf.Lerp(velocity.z, 0, Time.deltaTime * 5);
-
-            // Maintain vertical oscillation
-            Debug.Log("Treading water. Horizontal movement stopped.");
+            // Rise upward at the same speed as sinking
+            velocity.y = sinkingSpeed;
+            Debug.Log("Spacebar pressed. Rising upward.");
         }
     }
 
@@ -118,22 +113,12 @@ public class FluidDynamicsController : MonoBehaviour
         // Apply sinking when no input and no spacebar is pressed
         if (!Input.GetKey(KeyCode.Space) && Mathf.Abs(Input.GetAxis("Horizontal")) < 0.1f && Mathf.Abs(Input.GetAxis("Vertical")) < 0.1f)
         {
-            velocity.y -= sinkingSpeed * Time.deltaTime;
+            velocity.y = -sinkingSpeed;
             Debug.Log("Player sinking due to no input.");
         }
         else
         {
             Debug.Log("Sinking not applied (input detected or spacebar pressed).");
-        }
-    }
-
-    private void ApplyBuoyancy()
-    {
-        // Apply buoyancy force to counteract sinking
-        if (velocity.y < 0)
-        {
-            velocity.y += buoyancyForce * Time.deltaTime;
-            Debug.Log($"Buoyancy applied. Vertical velocity: {velocity.y}");
         }
     }
 
