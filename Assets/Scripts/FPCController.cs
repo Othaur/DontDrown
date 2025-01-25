@@ -79,7 +79,7 @@ public class FluidDynamicsController : MonoBehaviour
         // Handle manual Y-axis movement (up/down)
         if (Input.GetKey(KeyCode.Space)) // Move up
         {
-            velocity.y = upwardSpeed;
+            velocity.y = Mathf.Lerp(velocity.y, upwardSpeed, Time.deltaTime * 2); // Add drag to upward movement
         }
         else if (Input.GetKey(KeyCode.LeftShift)) // Move down
         {
