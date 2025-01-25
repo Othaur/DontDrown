@@ -15,7 +15,7 @@ public class FluidDynamicsController : MonoBehaviour
 
     // Oscillation constants
     public float strokeCycleTime = 1.0f; // Time for a full oscillation cycle
-    public float oscillationAmplitude = 2.0f; // Amplitude of the oscillation
+    public float oscillationAmplitude = 1.75f; // Amplitude of the oscillation
 
     // Water flow settings
     public Vector3 waterFlow = new Vector3(2.5f, 0, 0); // Reduced constant water flow direction
@@ -27,7 +27,7 @@ public class FluidDynamicsController : MonoBehaviour
     private CharacterController characterController;
     private Vector3 velocity = Vector3.zero; // Player velocity
     private float strokeTimer = 0.0f; // Timer to track oscillation phase
-    private float initialYPosition = 0.0f; // Initial Y position to ensure oscillation starts and ends consistently
+    private float currentOscillationBase = 0.0f; // Current Y base for oscillation
     private float currentCameraPitch = 0.0f; // Tracks camera pitch for vertical look
 
     void Start()
@@ -38,8 +38,8 @@ public class FluidDynamicsController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
-        // Store the initial Y position
-        initialYPosition = transform.position.y;
+        // Initialize the oscillation base
+        currentOscillationBase = transform.position.y;
     }
 
     void Update()
@@ -70,8 +70,8 @@ public class FluidDynamicsController : MonoBehaviour
         // Calculate the oscillation offset using a sine wave
         float oscillation = Mathf.Sin(oscillationPhase * Mathf.PI * 2) * oscillationAmplitude;
 
-        // Apply the oscillation directly to the Y position
-        float newYPosition = initialYPosition + oscillation;
+        // Use the current Y position as the oscillation base
+        float newYPosition = currentOscillationBase + oscillation;
         velocity.y = (newYPosition - transform.position.y) / Time.deltaTime;
 
         Debug.Log($"Oscillation active: Phase={oscillationPhase:F2}, Value={oscillation:F2}, New Y Position={newYPosition:F2}");
@@ -104,6 +104,7 @@ public class FluidDynamicsController : MonoBehaviour
         {
             // Rise upward at the same speed as sinking
             velocity.y = sinkingSpeed;
+            currentOscillationBase = transform.position.y; // Update oscillation base to current position
             Debug.Log("Spacebar pressed. Rising upward.");
         }
     }
@@ -114,6 +115,7 @@ public class FluidDynamicsController : MonoBehaviour
         if (!Input.GetKey(KeyCode.Space) && Mathf.Abs(Input.GetAxis("Horizontal")) < 0.1f && Mathf.Abs(Input.GetAxis("Vertical")) < 0.1f)
         {
             velocity.y = -sinkingSpeed;
+            currentOscillationBase = transform.position.y; // Update oscillation base to current position
             Debug.Log("Player sinking due to no input.");
         }
         else

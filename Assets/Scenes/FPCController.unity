@@ -514,7 +514,7 @@ MonoBehaviour:
   buoyancyForce: 30
   gravity: -9.8
   strokeCycleTime: 1
-  oscillationAmplitude: 2
+  oscillationAmplitude: 1.75
   waterFlow: {x: 2.5, y: 0, z: 0}
   verticalLookSpeed: 2
   maxVerticalAngle: 45
