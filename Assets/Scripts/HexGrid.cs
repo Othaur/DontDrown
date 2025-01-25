@@ -10,6 +10,8 @@ public class HexGrid : MonoBehaviour
     [SerializeField] GameObject wallTransform;
     [SerializeField] GameObject emptyTransform;
     [SerializeField] GameObject startTransform;
+    [SerializeField] int width;
+    [SerializeField] int height;
 
     public Vector2Int currentTile;
     List<MazeNode> nodes;
@@ -17,11 +19,13 @@ public class HexGrid : MonoBehaviour
 
     public int Width { get; set; }
     public int Height { get; set; }
+    public float cellSize = 5f;
+
     private void Awake()
     {
-        Width = 30; //26
-        Height = 18; //18
-        float cellSize = 5f; //5
+        Width = width; //26
+        Height = height; //18
+        //float cellSize = 5f; //5
 
         grid = new GridSystem<MapGridObject>(Width, Height, cellSize, new Vector3((Width * cellSize)/-2f, ((Height*cellSize)*.75f/-2f)+1 ), (GridSystem<MapGridObject> g, int x, int y) => new MapGridObject(g, x, y));
 

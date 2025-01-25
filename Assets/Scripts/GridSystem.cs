@@ -43,8 +43,8 @@ public class GridSystem <TGridObject>
     public Vector3 GetWorldPosition(int x, int y)
     {
         return
-            new Vector3(x, 0) * cellSize +
-            new Vector3(0, y) * cellSize * HEX_VERT_OFFSET +
+            new Vector3(x,0, 0) * cellSize +
+            new Vector3(0,0, y) * cellSize * HEX_VERT_OFFSET +
            ((Mathf.Abs(y) % 2) == 1 ? new Vector3(1, 0, 0) * cellSize * 0.5f : Vector3.zero)
             + origin;
     }
