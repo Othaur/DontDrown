@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
-public class FluidDynamicsController : MonoBehaviour
+public class FPCController : MonoBehaviour
 {
     // Physics constants
     public float forwardSpeed = 15.5f; // Reduced horizontal movement speed (50% shorter) 
@@ -21,8 +21,9 @@ public class FluidDynamicsController : MonoBehaviour
     public Vector3 waterFlow = new Vector3(2.0f, 0, 0); // Reduced constant water flow direction
 
     // Camera settings
-    public float verticalLookSpeed = 2.0f; // Speed of vertical camera look
-    public float maxVerticalAngle = 45.0f; // Maximum camera pitch angle
+    public float verticalLookSpeed = 50f; // Increased speed of vertical camera look
+    public float horizontalLookSpeed = 50f; // Increased speed of horizontal camera look
+    public float maxVerticalAngle = 67.5f; // Maximum camera pitch angle
 
     private CharacterController characterController;
     private Vector3 velocity = Vector3.zero; // Player velocity
@@ -46,6 +47,8 @@ public class FluidDynamicsController : MonoBehaviour
 
     void Update()
     {
+        Debug.Log($"Mouse Input Test: X = {Input.GetAxis("Mouse X")}, Y = {Input.GetAxis("Mouse Y")}");
+        HandleCameraRotation();    // Adjust camera rotation first
         ApplyOscillation();         // Constant up-and-down movement
         ApplyHorizontalMovement();  // WASD controls for X/Z movement
         ApplySpacebarControls();    // Spacebar to rise
@@ -53,7 +56,6 @@ public class FluidDynamicsController : MonoBehaviour
 
         // Apply final movement and forces
         characterController.Move(velocity * Time.deltaTime);
-        Debug.Log($"Final velocity: {velocity}");
     }
 
     private void ApplyOscillation()
@@ -63,7 +65,6 @@ public class FluidDynamicsController : MonoBehaviour
         if (strokeTimer > strokeCycleTime)
         {
             strokeTimer -= strokeCycleTime;
-            Debug.Log("Oscillation cycle reset. Timer restarted.");
         }
 
         // Calculate the oscillation phase (normalized to 0-1)
@@ -88,8 +89,6 @@ public class FluidDynamicsController : MonoBehaviour
 
         float newYPosition = currentOscillationBase + oscillation;
         velocity.y = (newYPosition - transform.position.y) / Time.deltaTime;
-
-        Debug.Log($"Oscillation active: Phase={oscillationPhase:F2}, Value={oscillation:F2}, New Y Position={newYPosition:F2}");
     }
 
     private void ApplyHorizontalMovement()
@@ -102,14 +101,12 @@ public class FluidDynamicsController : MonoBehaviour
         {
             velocity.x = Mathf.Lerp(velocity.x, inputDirection.x * lateralSpeed, Time.deltaTime * 3);
             velocity.z = Mathf.Lerp(velocity.z, inputDirection.z * forwardSpeed, Time.deltaTime * 3);
-            Debug.Log($"Horizontal input detected: {inputDirection}");
         }
         else
         {
             // Apply drag to quickly stop horizontal movement
             velocity.x *= dragCoefficient;
             velocity.z *= dragCoefficient;
-            Debug.Log("Applying drag to horizontal movement.");
         }
     }
 
@@ -121,7 +118,6 @@ public class FluidDynamicsController : MonoBehaviour
             velocity.y = sinkingSpeed;
             isRisingWithOscillation = true; // Enable diagonal rising oscillation
             updateOscillationBase = true; // Allow oscillation base to update after rising
-            Debug.Log("Spacebar pressed. Rising upward.");
         }
         else
         {
@@ -136,23 +132,22 @@ public class FluidDynamicsController : MonoBehaviour
         {
             velocity.y = -sinkingSpeed;
             updateOscillationBase = true; // Allow oscillation base to update after sinking
-            Debug.Log("Player sinking due to no input.");
-        }
-        else
-        {
-            Debug.Log("Sinking not applied (input detected or spacebar pressed).");
         }
     }
 
     private void HandleCameraRotation()
     {
+        // Adjust vertical camera rotation (pitch)
         float lookX = -Input.GetAxis("Mouse Y") * verticalLookSpeed;
         currentCameraPitch = Mathf.Clamp(currentCameraPitch + lookX, -maxVerticalAngle, maxVerticalAngle);
+
+        // Apply the vertical rotation
         Camera.main.transform.localRotation = Quaternion.Euler(currentCameraPitch, 0, 0);
 
-        float lookY = Input.GetAxis("Mouse X") * verticalLookSpeed;
-        transform.Rotate(0, lookY, 0);
-
-        Debug.Log($"Camera rotation updated. Pitch: {currentCameraPitch}, Yaw: {transform.rotation.eulerAngles.y}");
+        // Adjust horizontal player rotation (yaw) using Quaternion
+        float lookY = Input.GetAxis("Mouse X") * horizontalLookSpeed;
+        Quaternion horizontalRotation = Quaternion.Euler(0, lookY, 0);
+        transform.rotation *= horizontalRotation; // Accumulate yaw rotation
     }
+
 }

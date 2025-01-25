@@ -516,7 +516,8 @@ MonoBehaviour:
   strokeCycleTime: 1.25
   oscillationAmplitude: 1.6
   waterFlow: {x: 2, y: 0, z: 0}
-  verticalLookSpeed: 2
+  verticalLookSpeed: 0.8
+  horizontalLookSpeed: 0.8
   maxVerticalAngle: 45
 --- !u!1 &1741693159
 GameObject:
