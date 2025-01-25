@@ -96,11 +96,14 @@ public class FPCController : MonoBehaviour
         // Get input direction
         Vector3 inputDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")).normalized;
 
-        // Apply movement input to velocity
         if (inputDirection != Vector3.zero)
         {
-            velocity.x = Mathf.Lerp(velocity.x, inputDirection.x * lateralSpeed, Time.deltaTime * 3);
-            velocity.z = Mathf.Lerp(velocity.z, inputDirection.z * forwardSpeed, Time.deltaTime * 3);
+            // Calculate movement relative to the player's orientation
+            Vector3 moveDirection = (transform.right * inputDirection.x + transform.forward * inputDirection.z).normalized;
+
+            // Apply movement to velocity
+            velocity.x = Mathf.Lerp(velocity.x, moveDirection.x * lateralSpeed, Time.deltaTime * 3);
+            velocity.z = Mathf.Lerp(velocity.z, moveDirection.z * forwardSpeed, Time.deltaTime * 3);
         }
         else
         {
