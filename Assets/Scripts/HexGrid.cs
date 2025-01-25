@@ -6,16 +6,15 @@ using UnityEngine;
 public class HexGrid : MonoBehaviour
 {
     private GridSystem<MapGridObject> grid;
-    private MapGridObject lastGridObject;     
-    [SerializeField] GameObject wallTransform;
-    [SerializeField] GameObject emptyTransform;
+    private MapGridObject lastGridObject;
     [SerializeField] GameObject startTransform;
     [SerializeField] int width;
     [SerializeField] int height;
 
-    public Vector2Int currentTile;
-    List<MazeNode> nodes;
+    [SerializeField] List<GameObject> wallList;
+    [SerializeField] List<GameObject> emptyList;
 
+    List<MazeNode> nodes;
 
     public int Width { get; set; }
     public int Height { get; set; }
@@ -27,7 +26,7 @@ public class HexGrid : MonoBehaviour
         Height = height; //18
         //float cellSize = 5f; //5
 
-        grid = new GridSystem<MapGridObject>(Width, Height, cellSize, new Vector3((Width * cellSize)/-2f, ((Height*cellSize)*.75f/-2f)+1 ), (GridSystem<MapGridObject> g, int x, int y) => new MapGridObject(g, x, y));
+        grid = new GridSystem<MapGridObject>(Width, Height, cellSize, new Vector3((Width * cellSize)/-2f,0, ((Height*cellSize)*.75f/-2f)+1 ), (GridSystem<MapGridObject> g, int x, int y) => new MapGridObject(g, x, y));
 
     }
     private void Start()
@@ -38,8 +37,8 @@ public class HexGrid : MonoBehaviour
     void GenerateMaze()
     {
         GenHexMaze maze = new GenHexMaze();
-        int startX = 13;
-        int startY = 17;
+        int startX = Width / 2;//startTile.x;
+        int startY = Height / 2;//startTile.y;
 
         nodes = maze.GenerateMaze(this, new Vector2Int(startX, startY));
 
@@ -55,7 +54,7 @@ public class HexGrid : MonoBehaviour
                 {
                     case GroundState.Wall:
                         {
-                            GameObject tempTransform = Instantiate(wallTransform, grid.GetWorldPosition(i, j)+ new Vector3(0,0,0), Quaternion.identity);
+                            GameObject tempTransform = Instantiate(PickATile(wallList), grid.GetWorldPosition(i, j)+ new Vector3(0,0,0), Quaternion.identity);
                             grid.GetGridObject(i, j).visualTransform = tempTransform;                            
                             break;
                         }
@@ -67,7 +66,7 @@ public class HexGrid : MonoBehaviour
                         }
                     case GroundState.Empty:
                         {
-                            GameObject tempTransform = Instantiate(emptyTransform, grid.GetWorldPosition(i, j) + new Vector3(0, 0, 0), Quaternion.identity);
+                            GameObject tempTransform = Instantiate(PickATile(emptyList), grid.GetWorldPosition(i, j) + new Vector3(0, 0, 0), Quaternion.identity);
                             grid.GetGridObject(i, j).SetTransform( tempTransform);
                             break;
                         }
@@ -98,6 +97,13 @@ public class HexGrid : MonoBehaviour
         }
         
         
+    }
+
+    private GameObject PickATile(List<GameObject> list)
+    {
+        int count = list.Count;
+
+        return list[Random.Range(0, count)];
     }
 
     public List<Vector3Int> GetCellNeighbours(int x, int y)
