@@ -507,15 +507,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ad0f8b7ed2b3eb4a88eb7b3fa0f464e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forwardSpeed: 17.5
-  lateralSpeed: 10
-  sinkingSpeed: 10
-  dragCoefficient: 0.98
+  forwardSpeed: 15.5
+  lateralSpeed: 7
+  sinkingSpeed: 7
+  dragCoefficient: 0.99
   buoyancyForce: 30
   gravity: -9.8
-  strokeCycleTime: 1
-  oscillationAmplitude: 1.75
-  waterFlow: {x: 2.5, y: 0, z: 0}
+  strokeCycleTime: 1.25
+  oscillationAmplitude: 1.6
+  waterFlow: {x: 2, y: 0, z: 0}
   verticalLookSpeed: 2
   maxVerticalAngle: 45
 --- !u!1 &1741693159

@@ -6,19 +6,19 @@ using UnityEngine;
 public class FluidDynamicsController : MonoBehaviour
 {
     // Physics constants
-    public float forwardSpeed = 17.5f; // Reduced horizontal movement speed (50% shorter)
-    public float lateralSpeed = 10.0f; // Reduced side-to-side movement speed (50% shorter)
-    public float sinkingSpeed = 10.0f; // Default sinking speed (reduced to match upward movement)
-    public float dragCoefficient = 0.98f; // Increased drag for faster stopping
+    public float forwardSpeed = 15.5f; // Reduced horizontal movement speed (50% shorter)
+    public float lateralSpeed = 7.0f; // Reduced side-to-side movement speed (50% shorter)
+    public float sinkingSpeed = 7.0f; // Default sinking speed (reduced to match upward movement)
+    public float dragCoefficient = 0.99f; // Increased drag for faster stopping
     public float buoyancyForce = 30.0f; // Upward force counteracting sinking
     public float gravity = -9.8f; // Simulated gravity in water
 
     // Oscillation constants
-    public float strokeCycleTime = 1.0f; // Time for a full oscillation cycle
-    public float oscillationAmplitude = 1.75f; // Amplitude of the oscillation
+    public float strokeCycleTime = 1.25f; // Time for a full oscillation cycle
+    public float oscillationAmplitude = 1.6f; // Amplitude of the oscillation
 
     // Water flow settings
-    public Vector3 waterFlow = new Vector3(2.5f, 0, 0); // Reduced constant water flow direction
+    public Vector3 waterFlow = new Vector3(2.0f, 0, 0); // Reduced constant water flow direction
 
     // Camera settings
     public float verticalLookSpeed = 2.0f; // Speed of vertical camera look
