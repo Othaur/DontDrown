@@ -17,6 +17,8 @@ public class DeathManager : MonoBehaviour
     public void Death()
     {
         soundsOfDying.Play();
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         deathPanel.SetActive(true);
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
@@ -28,12 +30,13 @@ public class DeathManager : MonoBehaviour
 
     public void RestartLevel()
     {
-        
+       
         // Get the name of the current active scene
         
 
-        
+   
         StartCoroutine(ExampleCoroutine());
+
         // Load the scene with the same name to restart it
 
     }

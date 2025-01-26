@@ -82,13 +82,7 @@ public class HexGrid : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-       
-       
-        
-        
-    }
+
 
     private GameObject PickATile(List<GameObject> list)
     {
