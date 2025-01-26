@@ -1,0 +1,16 @@
+Don't Drown
+
+Out of air, out of luck - can you escape the cave alive?
+
+Plunge into the heart-pounding action of Don’t Drown, where survival means chasing air bubbles to keep breathing! Dive deep into twisting, perilous caverns, snatch life-saving oxygen, and outwit the relentless clock as you navigate the maze. Every move counts, every second matters. Will you conquer the depths or become just another victim of the cave’s grasp?
+
+This adrenaline-pumping game was crafted in just 48 hours during an epic game jam by the dream team: Colin, Russell, David, and Jen. Colin’s a seasoned pro with 12 game jams under his belt, while the rest of the team dove headfirst into our first-ever jam — and absolutely brought our passion, energy, and excitement to the table. Together, we’ve created an action-packed adventure we can’t wait for you to play.
+
+Get ready for survival, action, adventure, and mind-bending puzzles that will test your wits and reflexes.
+
+Think you’ve got what it takes? Prove it.
+
+
+survival, action, adventure, puzzle
+
+graphic in media folder in repo

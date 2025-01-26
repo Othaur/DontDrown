@@ -27,13 +27,17 @@ public class GiantAirBubble : MonoBehaviour
         BubbleBurstCountdown();
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (GameObject.FindObjectOfType<CharacterController>())
+        // Debug.Log("Collisino Entered");
+        if (other.tag == "Player")
         {
-            //Increases player's air supply.
-            air.ChangeAirSupply(airSupplyIncrease);
-            StartCoroutine(BurstBubble());
+            if (GameObject.FindObjectOfType<FPCController>())
+            {
+                //Increases player's air supply.
+                air.ChangeAirSupply(airSupplyIncrease);
+                StartCoroutine(BurstBubble());
+            }
         }
     }
 
