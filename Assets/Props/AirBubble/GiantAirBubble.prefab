@@ -121,7 +121,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   airSupplyIncrease: 50
   rb: {fileID: 2315887661820806394}
-  movementForce: 1
+  movementForce: 0.01
 --- !u!54 &2315887661820806394
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -9,27 +9,30 @@ public class AirSupply : MonoBehaviour
 
     [SerializeField] private float airSupplyIncrease;
     [SerializeField] private float airSupplyCountdownMaxTime;
+    private float countdownTime;
     [SerializeField] private GameObject bubbleParticleEffect;
     [SerializeField] private bool isCountdownActive;
     [SerializeField] private GameObject airBubblePrefab;
 
     private void Start()
     {
-        StartCoroutine(AirSupplyCountdown(airSupplyCountdownMaxTime));
+        StartCoroutine(StartCountDown());
     }
 
     private void Update()
     {
         VisualCue();
+
+        AirSupplyCountdown();
     }
 
     private void VisualCue()
     {
-        if (isCountdownActive)
+        if (!isCountdownActive)
         {
             bubbleParticleEffect.SetActive(false);
         }
-        if (!isCountdownActive)
+        if (isCountdownActive)
         {
             bubbleParticleEffect.SetActive(true);
         }
@@ -37,32 +40,37 @@ public class AirSupply : MonoBehaviour
 
 
     // Timer to refresh air supply.
-
-    IEnumerator AirSupplyCountdown(float time)
+    private void AirSupplyCountdown()
     {
-        yield return new WaitForSeconds(2);
-
-        for (float i = time; i > 0; i -= Time.deltaTime)
+        if (isCountdownActive)
         {
-            if (i > 0)
+            if (countdownTime > 0)
             {
-                isCountdownActive = true;
+                countdownTime -= Time.deltaTime;
+                //Debug.Log(countdownTime);
             }
-            if (i <= 0)
+            else
             {
-                Instantiate(airBubblePrefab, transform.position, transform.rotation);
-                isCountdownActive = false;
-                //Starts a countdown to have more supply air.
-                StartCoroutine(AirSupplyCountdown(airSupplyCountdownMaxTime));
+                StartCoroutine(StartCountDown());
             }
-            Debug.Log(i);
-            yield return null;
         }
-
-
+        else
+        {
+            //Debug.Log("Countdown stopped");
+        }
     }
 
+    IEnumerator StartCountDown()
+    {
+        isCountdownActive = false;
+        Instantiate(airBubblePrefab, transform.position, transform.rotation);
+        yield return new WaitForSeconds(2);
 
+        //Starts a countdown to have more supply air.
+        countdownTime = airSupplyCountdownMaxTime;
+        isCountdownActive = true;
+        AirSupplyCountdown();
+    }
 
 
 }
