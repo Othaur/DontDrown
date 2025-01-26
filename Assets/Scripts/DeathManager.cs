@@ -20,17 +20,37 @@ public class DeathManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         deathPanel.SetActive(true);
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+
+        Debug.Log("Poping back to main");
+        StartCoroutine(ExampleCoroutine());
+
     }
 
     public void RestartLevel()
     {
-        Debug.Log("Restarting Level");
+       
         // Get the name of the current active scene
-        string sceneName = SceneManager.GetActiveScene().name;
         
+
+   
+        StartCoroutine(ExampleCoroutine());
+
         // Load the scene with the same name to restart it
-        SceneManager.LoadScene(sceneName);
+
     }
 
+    IEnumerator ExampleCoroutine()
+    {
+        string sceneName = SceneManager.GetActiveScene().name;
 
+        Debug.Log("Restarting: " + sceneName);
+
+        //yield on a new YieldInstruction that waits for 5 seconds.
+        yield return new WaitForSeconds(3);
+        SceneManager.LoadScene("Title Screen");
+        //After we have waited 5 seconds print the time again.
+        Debug.Log("Finished Coroutine at timestamp : " + Time.time);
+    }
 }
