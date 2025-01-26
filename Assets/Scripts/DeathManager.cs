@@ -17,14 +17,17 @@ public class DeathManager : MonoBehaviour
     public void Death()
     {
         soundsOfDying.Play();
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         deathPanel.SetActive(true);
     }
 
     public void RestartLevel()
     {
+        Debug.Log("Restarting Level");
         // Get the name of the current active scene
         string sceneName = SceneManager.GetActiveScene().name;
-
+        
         // Load the scene with the same name to restart it
         SceneManager.LoadScene(sceneName);
     }
