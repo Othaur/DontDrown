@@ -58,7 +58,8 @@ public class Air : MonoBehaviour
     private void Update()
     {
         //Checks for death conditions.
-        DeathCheck();
+        
+            DeathCheck();        
     }
 
     private void SliderUpdate()
@@ -322,12 +323,8 @@ public class Air : MonoBehaviour
     {
         if (isDead)
         {
-
-          //  Debug.Log("Player is dead");
-
-            //Add player lose scenario here
             deathManager.Death();
-
+            
         }
     }
 
