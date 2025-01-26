@@ -778,7 +778,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1867165132}
+      - m_Target: {fileID: 1867165133}
         m_TargetAssemblyTypeName: Howto, Assembly-CSharp
         m_MethodName: LoadScene
         m_Mode: 1
@@ -6214,9 +6214,9 @@ GameObject:
   - component: {fileID: 1867165128}
   - component: {fileID: 1867165127}
   - component: {fileID: 1867165134}
-  - component: {fileID: 1867165131}
-  - component: {fileID: 1867165132}
   - component: {fileID: 1867165133}
+  - component: {fileID: 1867165132}
+  - component: {fileID: 1867165131}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -6351,7 +6351,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1867165126}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ec81a6c519224e40a40d4781e236af8, type: 3}
+  m_Script: {fileID: 11500000, guid: 1e341da7854084f4a94160558a2c3282, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1867165132
@@ -6363,7 +6363,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1867165126}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 415cab82491f8ae478819143924d6598, type: 3}
+  m_Script: {fileID: 11500000, guid: 4f440abe57d4d004bb68e16355ae065c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1867165133
@@ -6375,7 +6375,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1867165126}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d008b5116b9fb84988038ff6cfa62a1, type: 3}
+  m_Script: {fileID: 11500000, guid: df3095a8d267d7848810029abf7c7a85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1867165134
@@ -6387,7 +6387,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1867165126}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 09436580e3faa8f4b8c5e11f2bceb8be, type: 3}
+  m_Script: {fileID: 11500000, guid: ff9a1c9c2c8ca8c4c8c538f79b487c6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2000111747
@@ -6606,7 +6606,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1867165133}
+      - m_Target: {fileID: 1867165132}
         m_TargetAssemblyTypeName: Credit, Assembly-CSharp
         m_MethodName: LoadScene
         m_Mode: 1

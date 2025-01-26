@@ -85,16 +85,7 @@ public class HexGrid : MonoBehaviour
     private void Update()
     {
        
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            Application.Quit();
-        }
-
-        if (Input.GetMouseButtonDown(0))
-        {
-            
-         
-        }
+       
         
         
     }
