@@ -632,7 +632,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: da83872ed21ad124681f055c1bc64088, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5bfc364a5a6c1974ebdfa17de71006e5, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2261,7 +2261,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cd3f2573aec4b749ab8b282e2489c31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deathManager: {fileID: 0}
+  deathManager: {fileID: 1494457681}
   airSlider: {fileID: 0}
   airSupply: 100
   airUsage: 5

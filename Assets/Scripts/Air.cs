@@ -322,7 +322,7 @@ public class Air : MonoBehaviour
     {
         if (isDead)
         {
-            Debug.Log("Player is dead");
+          //  Debug.Log("Player is dead");
             //Add player lose scenario here
             deathManager.Death();
 
