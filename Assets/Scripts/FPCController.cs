@@ -47,7 +47,7 @@ public class FPCController : MonoBehaviour
 
     void Update()
     {
-        Debug.Log($"Mouse Input Test: X = {Input.GetAxis("Mouse X")}, Y = {Input.GetAxis("Mouse Y")}");
+       // Debug.Log($"Mouse Input Test: X = {Input.GetAxis("Mouse X")}, Y = {Input.GetAxis("Mouse Y")}");
         HandleCameraRotation();    // Adjust camera rotation first
         ApplyOscillation();         // Constant up-and-down movement
         ApplyHorizontalMovement();  // WASD controls for X/Z movement
