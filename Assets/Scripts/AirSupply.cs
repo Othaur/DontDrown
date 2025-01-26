@@ -30,11 +30,15 @@ public class AirSupply : MonoBehaviour
     {
         if (!isCountdownActive)
         {
-            bubbleParticleEffect.SetActive(false);
+           // bubbleParticleEffect.SetActive(false);
+            ParticleSystem bubbleSystem = bubbleParticleEffect.GetComponent<ParticleSystem>();
+            bubbleSystem.Stop(true, ParticleSystemStopBehavior.StopEmitting);
         }
         if (isCountdownActive)
         {
-            bubbleParticleEffect.SetActive(true);
+            ParticleSystem bubbleSystem = bubbleParticleEffect.GetComponent<ParticleSystem>();
+            bubbleSystem.Play(true);
+            //bubbleParticleEffect.SetActive(true);
         }
     }
 
