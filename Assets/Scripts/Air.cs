@@ -11,8 +11,8 @@ public class Air : MonoBehaviour
     [Header("Air supply and Timer")]
     [SerializeField] private float airSupply;
     [SerializeField] private float airUsage;
-    private float airSupplyMax;
-    private float airSupplyMin;
+    private float airSupplyMax = 100;
+    private float airSupplyMin = 0;
     [SerializeField] private float airCountdownMaxTime;
 
 
