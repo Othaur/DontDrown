@@ -731,7 +731,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -583, y: -411}
+  m_AnchoredPosition: {x: -438, y: -215.01727}
   m_SizeDelta: {x: 163.1942, y: 53.3194}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &543106215
@@ -778,7 +778,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1867165133}
+      - m_Target: {fileID: 1867165132}
         m_TargetAssemblyTypeName: Howto, Assembly-CSharp
         m_MethodName: LoadScene
         m_Mode: 1
@@ -864,7 +864,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 868, y: 461}
+  m_AnchoredPosition: {x: 479, y: 212}
   m_SizeDelta: {x: 68.7875, y: 58.0307}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &760093082
@@ -6213,6 +6213,7 @@ GameObject:
   - component: {fileID: 1867165129}
   - component: {fileID: 1867165128}
   - component: {fileID: 1867165127}
+  - component: {fileID: 1867165134}
   - component: {fileID: 1867165131}
   - component: {fileID: 1867165132}
   - component: {fileID: 1867165133}
@@ -6350,7 +6351,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1867165126}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee5e2d7ef8a6d064e939977a69f4dbd6, type: 3}
+  m_Script: {fileID: 11500000, guid: 8ec81a6c519224e40a40d4781e236af8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1867165132
@@ -6362,7 +6363,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1867165126}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a682553da835064ebbb9dddd42c38e4, type: 3}
+  m_Script: {fileID: 11500000, guid: 415cab82491f8ae478819143924d6598, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1867165133
@@ -6374,7 +6375,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 1867165126}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b3926bcc0c6f374990e604b7d7dc243, type: 3}
+  m_Script: {fileID: 11500000, guid: 6d008b5116b9fb84988038ff6cfa62a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1867165134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1867165126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09436580e3faa8f4b8c5e11f2bceb8be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2000111747
@@ -6413,8 +6426,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -410}
-  m_SizeDelta: {x: 219.376, y: 77.35388}
+  m_AnchoredPosition: {x: 0, y: -190}
+  m_SizeDelta: {x: 219.376, y: 77.3539}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2000111749
 MonoBehaviour:
@@ -6546,7 +6559,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 652, y: -393}
+  m_AnchoredPosition: {x: 443.09088, y: -215.01727}
   m_SizeDelta: {x: 163.1942, y: 53.3194}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2019360604
@@ -6593,7 +6606,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1867165132}
+      - m_Target: {fileID: 1867165133}
         m_TargetAssemblyTypeName: Credit, Assembly-CSharp
         m_MethodName: LoadScene
         m_Mode: 1
