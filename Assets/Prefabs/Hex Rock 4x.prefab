@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 3115352112763351603}
   - component: {fileID: 2993047747649960752}
   m_Layer: 0
-  m_Name: Hex Rock 4
+  m_Name: Hex Rock 4x
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
