@@ -11,7 +11,7 @@
 
        // 0 references
         public void Scene1() {  
-            SceneManager.LoadScene("MazeGen");  
+            SceneManager.LoadScene("TestGridScene");  
         }  
         
     }   
