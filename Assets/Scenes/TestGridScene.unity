@@ -495,7 +495,7 @@ Light:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 1000
   m_Range: 100
-  m_SpotAngle: 60
+  m_SpotAngle: 75
   m_InnerSpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
@@ -828,7 +828,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b0dbb2a8b5b286b4ebbbe9fa70ffbf72, type: 2}
+  - {fileID: 2100000, guid: 761cd975370a22748b55a725541d3640, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
