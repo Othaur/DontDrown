@@ -17,7 +17,6 @@ public class DeathManager : MonoBehaviour
     {
         soundsOfDying.Play();
         deathPanel.SetActive(true);
-
     }
 
 
