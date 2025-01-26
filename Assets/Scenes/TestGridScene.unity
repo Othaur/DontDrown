@@ -488,7 +488,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1aea56a6f9d09e438b3c95f1236bc77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startTransform: {fileID: 1674875830813750869, guid: fda70fb2e7a811548a01c2b1584f118e,
+  startTransform: {fileID: 1674875830813750869, guid: 91225ae7b9cecb842a54a65d86bc01ea,
     type: 3}
   width: 40
   height: 35
