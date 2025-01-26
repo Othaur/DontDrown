@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class Air : MonoBehaviour
 {
+    [SerializeField] private DeathManager deathManager;
+
     [SerializeField] private Slider airSlider;
 
     [Header("Air supply and Timer")]
@@ -322,7 +324,10 @@ public class Air : MonoBehaviour
         {
             Debug.Log("Player is dead");
             //Add player lose scenario here
+            deathManager.Death();
+
         }
     }
+
 
 }
