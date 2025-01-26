@@ -29,7 +29,7 @@ public class GiantAirBubble : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (GameObject.FindObjectOfType<FluidDynamicsController>())
+        if (GameObject.FindObjectOfType<FPCController>())
         {
             //Increases player's air supply.
             air.ChangeAirSupply(airSupplyIncrease);
