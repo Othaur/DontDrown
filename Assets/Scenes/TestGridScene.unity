@@ -298,9 +298,9 @@ MonoBehaviour:
   strokeCycleTime: 1
   oscillationAmplitude: 1.6
   waterFlow: {x: 2, y: 0, z: 0}
-  verticalLookSpeed: 2
-  horizontalLookSpeed: 5
-  maxVerticalAngle: 6
+  verticalLookSpeed: 5
+  horizontalLookSpeed: 6
+  maxVerticalAngle: 45
 --- !u!143 &243712519
 CharacterController:
   m_ObjectHideFlags: 0
@@ -355,7 +355,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!114 &277616802
 MonoBehaviour:
@@ -374,15 +374,16 @@ MonoBehaviour:
   width: 30
   height: 30
   wallList:
+  - {fileID: 8899680290924071445, guid: 85a8e02379471ff4e8e3f15212a02e7e, type: 3}
   - {fileID: 8593152807933158161, guid: 62d3aa3459bb0fd4c8d094c9325fe15f, type: 3}
-  - {fileID: 3446843463600411613, guid: f09e33cbcf3073347bf5efddeb3be22f, type: 3}
-  - {fileID: 3446843463600411613, guid: f09e33cbcf3073347bf5efddeb3be22f, type: 3}
-  - {fileID: 4834892020010920345, guid: 565c46cbb64cec24dbdba4fd3bb657a0, type: 3}
   - {fileID: 5853037842320681869, guid: af10a0c4c74527740882e4516c45559c, type: 3}
   - {fileID: 8553166789220474494, guid: facce0ee66636c844b3f41c8203abc6a, type: 3}
+  - {fileID: 5516013367025501117, guid: f26a473d322318e4eb0d8e8ae336c92d, type: 3}
+  - {fileID: 8899680290924071445, guid: 85a8e02379471ff4e8e3f15212a02e7e, type: 3}
   emptyList:
-  - {fileID: 1225506543246328207, guid: b974cc59e1cb2da4ab4c136702e7c4ee, type: 3}
-  - {fileID: 5050691910733289108, guid: 728304645f55b2f409a55fab05309a41, type: 3}
+  - {fileID: 8056955800750395635, guid: 225e583eba0acd643879f465d83afd81, type: 3}
+  - {fileID: 4611089339511525768, guid: 96dbace8b997cea4b9dfe459c47ea7d4, type: 3}
+  - {fileID: 1032306319834037220, guid: e9e92d83d2741af459d3f19f355c9959, type: 3}
   cellSize: 61
 --- !u!4 &277616803
 Transform:
